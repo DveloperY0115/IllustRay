@@ -89,7 +89,8 @@
 			"sourceIndexes" : 
 			[
 				1,
-				2
+				2,
+				3
 			]
 		}
 	],
@@ -109,6 +110,11 @@
 		{
 			"backtrace" : 1,
 			"path" : "Includes/Vector.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Includes/Types.hpp",
 			"sourceGroupIndex" : 1
 		}
 	],
