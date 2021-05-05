@@ -1,12 +1,12 @@
 ﻿// Illustray.cpp : Defines the entry point for the application.
 //
 
-#include "Illustray.h"
-
-using namespace std;
+#include <iostream>
+#include "Includes/Vector.hpp"
 
 int main()
 {
-	cout << "Hello CMake." << endl;
-	return 0;
+	Illustray::Vector<int, 3> vec3 = Illustray::Vector<int, 3>();
+
+	std::cout << vec3[0] << " " << vec3[1] << " " << vec3[2] << "\n";
 }
