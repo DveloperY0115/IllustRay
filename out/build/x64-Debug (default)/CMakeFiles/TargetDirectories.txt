@@ -1,0 +1,3 @@
+C:/Users/dveloper0115/source/repos/Illustray/out/build/x64-Debug (default)/CMakeFiles/edit_cache.dir
+C:/Users/dveloper0115/source/repos/Illustray/out/build/x64-Debug (default)/CMakeFiles/Illustray.dir
+C:/Users/dveloper0115/source/repos/Illustray/out/build/x64-Debug (default)/CMakeFiles/rebuild_cache.dir
