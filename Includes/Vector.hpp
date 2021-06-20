@@ -143,6 +143,7 @@ namespace IllustRay {
 
 		// Make a vector to have unit length in terms of Euclidean distance.
 		void normalize() {
+
 		    double norm = this->EuclideanNorm();
 
             for (int index = 0; index < N; ++index) {

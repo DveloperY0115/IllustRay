@@ -1,0 +1,3 @@
+[submodule "Libraries/Catch2"]
+	path = Libraries/Catch2
+	url = https://github.com/catchorg/Catch2.git
