@@ -4,7 +4,7 @@
 #include <algorithm>
 #include <array>
 
-namespace Illustray {
+namespace IllustRay {
 
 	//! Generic class for N-dimensional Vector
 	template <typename T, size_t N>
