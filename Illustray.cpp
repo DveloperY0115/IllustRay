@@ -6,7 +6,18 @@
 
 int main()
 {
-	Illustray::Vector<int, 3> vec3 = Illustray::Vector<int, 3>();
+	IllustRay::Vector<float, 3> vec1 = IllustRay::Vector<float, 3>(2.0);
+	IllustRay::Vector<float, 3> vec2 = IllustRay::Vector<float, 3>(1.0);
 
-	std::cout << vec3[0] << " " << vec3[1] << " " << vec3[2] << "\n";
+	IllustRay::Vector<float, 3> vec = IllustRay::Vector<float, 3>(vec1);
+	vec += vec2;
+	std::cout << vec[0] << " " << vec[1] << " " << vec[2] << "\n";
+
+	vec = -vec2;
+    std::cout << vec[0] << " " << vec[1] << " " << vec[2] << "\n";
+
+    vec.normalize();
+    std::cout << vec[0] << " " << vec[1] << " " << vec[2] << "\n";
+
+    std::cout << vec.EuclideanNorm() << "\n";
 }

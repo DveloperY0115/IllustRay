@@ -19,8 +19,13 @@ namespace IllustRay {
 		}
 
 		// Initialize all elements to the given value.
-		Vector(const T& value) {
+		explicit Vector(const T& value) {
 			data.fill(value);
+		}
+
+		// Initialize elements with values in existing container.
+		explicit Vector(const std::array<T, N> container) {
+		    data = container;
 		}
 
 		// Copy constructor.
@@ -148,5 +153,119 @@ namespace IllustRay {
 	private:
 		std::array<T, N> data;
 	};
+
+    // Type aliases for Vector
+    using Vector2Float = Vector<float, 2>;
+    using Vector2Int = Vector<int, 2>;
+    using Vector2UInt = Vector<unsigned int, 2>;
+
+    using Vector3Float = Vector<float, 3>;
+    using Vector3Int = Vector<int, 3>;
+    using Vector3UInt = Vector<unsigned int, 3>;
+
+    using RGB = Vector<float, 3>;
+    using RGBA = Vector<float, 4>;
+
+	// Binary vector addition.
+	template <typename T, size_t N>
+	Vector<T, N> operator + (const Vector<T, N>& v1, const Vector<T, N>& v2) {
+
+	    std::array<T, N> container = std::array<T, N>();
+
+	    for (int index = 0; index < N; ++index) {
+            container[index] = v1[index] + v2[index];
+	    }
+
+	    return Vector<T, N>(container);
+	}
+
+	// Binary vector subtraction.
+	template <typename T, size_t N>
+	Vector<T, N> operator - (const Vector<T, N>& v1, const Vector<T, N>& v2) {
+
+        std::array<T, N> container = std::array<T, N>();
+
+        for (int index = 0; index < N; ++index) {
+            container[index] = v1[index] - v2[index];
+        }
+
+        return Vector<T, N>(container);
+	}
+
+	// Binary element-wise vector multiplication.
+	template <typename T, size_t N>
+	Vector<T, N> operator * (const Vector<T, N>& v1, const Vector<T, N>& v2) {
+
+        std::array<T, N> container = std::array<T, N>();
+
+        for (int index = 0; index < N; ++index) {
+            container[index] = v1[index] * v2[index];
+        }
+
+        return Vector<T, N>(container);
+	}
+
+	// Binary scalar multiplication.
+	template <typename T, size_t N>
+	Vector<T, N> operator * (T s, const Vector<T, N>& v) {
+
+        std::array<T, N> container = std::array<T, N>();
+
+        for (int index = 0; index < N; ++index) {
+            container[index] = s * v[index];
+        }
+
+        return Vector<T, N>(container);
+	}
+
+	template <typename T, size_t N>
+	Vector<T, N> operator * (const Vector<T, N>& v, T s) {
+	    return s * v;
+	}
+
+	// Binary scalar division.
+	template <typename T, size_t N>
+	Vector<T, N> operator / (const Vector<T, N>& v, T s) {
+	    return (1 / s) * v;
+	}
+
+	// Make unit vector from existing vector.
+	template <typename T, size_t N>
+	Vector<T, N> unitVector(Vector<T, N> v) {
+	    return v / v.EuclideanNorm();
+	}
+
+	// Dot product.
+	template <typename T, size_t N>
+	double dot(const Vector<T, N>& v1, const Vector<T, N>& v2) {
+
+	    double result = 0;
+
+	    for (int index = 0; index < N; ++index) {
+	        result = v1[index] * v2[index];
+	    }
+
+	    return result;
+	}
+
+	// Cross product.
+	// Note that cross product is defined for 3D vector only.
+	template <typename T>
+	Vector<T, 3> cross(const Vector<T, 3>& v1, const Vector<T, 3>& v2) {
+
+	    std::array<T, 3> container = std::array<T, 3>();
+	    container[0] = v1[1] * v2[2] - v1[2] * v2[1];
+	    container[1] = -(v1[0] * v2[2] - v1[2] * v2[0]);
+	    container[2] = v1[0] * v2[1] - v1[1] * v2[0];
+
+	    return Vector<T, 3>(container);
+	}
+
+	// Reflect operator.
+	// Calculate perfect mirror reflection of passed vector.
+	template <typename T, size_t N>
+	Vector<T, N> reflect(const Vector<T, N>& v, const Vector<T, N>& n) {
+	    return v - 2 * dot(v, n) * n;
+	}
 }
 #endif
