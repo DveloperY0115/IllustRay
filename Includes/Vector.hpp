@@ -156,10 +156,12 @@ namespace IllustRay {
 	};
 
     // Type aliases for Vector
+    using Vector2Double = Vector<double, 2>;
     using Vector2Float = Vector<float, 2>;
     using Vector2Int = Vector<int, 2>;
     using Vector2UInt = Vector<unsigned int, 2>;
 
+    using Vector3Double = Vector<double, 3>;
     using Vector3Float = Vector<float, 3>;
     using Vector3Int = Vector<int, 3>;
     using Vector3UInt = Vector<unsigned int, 3>;
