@@ -1,1 +1,1 @@
-add_executable(VectorTest VectorTest.cpp)
+add_executable(VectorTest Vector/VectorTest.cpp)
