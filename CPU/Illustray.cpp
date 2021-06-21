@@ -3,7 +3,7 @@
 */
 
 #include <iostream>
-#include "Vector/Vector.hpp"
+#include "Vector/VectorBase.hpp"
 
 int main()
 {

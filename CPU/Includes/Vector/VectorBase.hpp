@@ -1,3 +1,7 @@
+/*
+ * VectorBase.hpp : Base class for vectors.
+ */
+
 #ifndef VECTOR_HPP
 #define VECTOR_HPP
 
@@ -157,19 +161,7 @@ namespace IllustRay {
 		std::array<T, N> data;
 	};
 
-    // Type aliases for Vector
-    using Vector2Double = Vector<double, 2>;
-    using Vector2Float = Vector<float, 2>;
-    using Vector2Int = Vector<int, 2>;
-    using Vector2UInt = Vector<unsigned int, 2>;
 
-    using Vector3Double = Vector<double, 3>;
-    using Vector3Float = Vector<float, 3>;
-    using Vector3Int = Vector<int, 3>;
-    using Vector3UInt = Vector<unsigned int, 3>;
-
-    using RGB = Vector<float, 3>;
-    using RGBA = Vector<float, 4>;
 
 	// Binary vector addition.
 	template <typename T, size_t N>
@@ -274,6 +266,7 @@ namespace IllustRay {
 	}
 }
 
+#include "VectorTypes.hpp"
 #include "Vector2.hpp"
 #include "Vector3.hpp"
 #include "Vector4.hpp"

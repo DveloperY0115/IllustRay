@@ -5,7 +5,7 @@
 
 #define CATCH_CONFIG_MAIN
 #include "../catch.hpp"
-#include "Vector/Vector.hpp"
+#include "Vector/VectorBase.hpp"
 
 using namespace IllustRay;
 
