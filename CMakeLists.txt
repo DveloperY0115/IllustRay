@@ -12,4 +12,4 @@ include_directories(Includes)
 add_subdirectory(Tests)
 
 # Add source to this project's executable.
-add_executable (Illustray "Illustray.cpp" "Illustray.h" "Includes/Vector.hpp" "Includes/Types.hpp")
+add_executable (Illustray "Illustray.cpp" "Illustray.h" "Includes/Vector/Vector.hpp" "Includes/Types.hpp")
