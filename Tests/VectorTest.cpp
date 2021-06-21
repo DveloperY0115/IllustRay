@@ -108,7 +108,7 @@ TEST_CASE("Testing unary operators") {
         REQUIRE(v.ManhattanNorm() == 6.0);
         REQUIRE(v.EuclideanNorm() == std::sqrt(1.0 + 2.0 * 2.0 + 3.0 * 3.0));
 
-        v.normalize();
+        v = v.normalize();
         REQUIRE(v.EuclideanNorm() == 1.0);
     }
 }
@@ -117,6 +117,75 @@ TEST_CASE("Testing binary operators") {
 
     // Binary vector addition
     SECTION("Vector addition") {
-        
+        Vector3Float v1 = Vector3Float(1.0);
+        Vector3Float v2 = Vector3Float(2.0);
+        Vector3Float v3 = v1 + v2;
+        REQUIRE((v3[0] == 3.0 && v3[1] == 3.0 && v3[2] == 3.0));
+    }
+
+    // Binary vector subtraction
+    SECTION("Vector subtraction") {
+        Vector3Float v1 = Vector3Float(1.0);
+        Vector3Float v2 = Vector3Float(2.0);
+        Vector3Float v3 = v1 - v2;
+        REQUIRE((v3[0] == -1.0 && v3[1] == -1.0 && v3[2] == -1.0));
+    }
+
+    // Element-wise vector multiplication
+    SECTION("Element-wise vector multiplication") {
+        Vector3Float v1 = Vector3Float(2.0);
+        Vector3Float v2 = Vector3Float(2.0);
+        Vector3Float v3 = v1 * v2;
+        REQUIRE((v3[0] == 4.0 && v3[1] == 4.0 && v3[2] == 4.0));
+    }
+
+    // Scalar multiplication
+    SECTION("Scalar multiplication") {
+        Vector3Float v1 = Vector3Float(2.0);
+        Vector3Float v2 = static_cast<float>(2.0) * v1;
+        Vector3Float v3 = v1 * static_cast<float>(2.0);
+        REQUIRE((v2[0] == 4.0 && v2[1] == 4.0 && v2[2] == 4.0));
+        REQUIRE((v3[0] == 4.0 && v3[1] == 4.0 && v3[2] == 4.0));
+    }
+
+    // Scalar division
+    SECTION("Scalar division") {
+        Vector3Float v1 = Vector3Float(2.0);
+        Vector3Float v2 = v1 / static_cast<float>(2.0);
+        REQUIRE((v2[0] == 1.0 && v2[1] == 1.0 && v2[2] == 1.0));
+    }
+
+    // Unit vector
+    SECTION("Make unit vector") {
+        Vector3Float v1 = Vector3Float(10.0);
+        Vector3Float v2 = unitVector(v1);
+        REQUIRE(Approx(v2.EuclideanNorm()) == 1.0);
+    }
+
+    // Dot product
+    SECTION("Dot product") {
+        Vector3Float v1 = Vector3Float(2.0);
+        Vector3Float v2 = Vector3Float(3.0);
+        double result = dot(v1, v2);
+        REQUIRE(result == 18.0);
+    }
+
+    // Cross product
+    SECTION("Cross product") {
+        std::array<float, 3> v1Container = {1.0, 2.0, 3.0};
+        std::array<float, 3> v2Container = {3.0, 2.0, 1.0};
+        Vector3Float v1 = Vector3Float(v1Container);
+        Vector3Float v2 = Vector3Float(v2Container);
+        Vector3Float result = cross(v1, v2);
+        REQUIRE((result[0] == -4.0 && result[1] == 8.0 && result[2] == -4.0));
+    }
+
+    // Reflection
+    SECTION("Reflect") {
+        std::array<float, 3> v1Container = {1.0, 2.0, 3.0};
+        Vector3Float n = Vector3Float(1.0);
+        Vector3Float v1 = Vector3Float(v1Container);
+        Vector3Float v2 = reflect(v1, n);
+        REQUIRE((v2[0] == -11.0 && v2[1] == -10.0 && v2[2] == -9.0));
     }
 }

@@ -142,13 +142,15 @@ namespace IllustRay {
 		}
 
 		// Make a vector to have unit length in terms of Euclidean distance.
-		void normalize() {
+		Vector<T, N>& normalize() {
 
 		    double norm = this->EuclideanNorm();
 
             for (int index = 0; index < N; ++index) {
                 this->data[index] /= norm;
             }
+
+            return *this;
 		}
 
 	private:
@@ -235,17 +237,17 @@ namespace IllustRay {
 	// Make unit vector from existing vector.
 	template <typename T, size_t N>
 	Vector<T, N> unitVector(Vector<T, N> v) {
-	    return v / v.EuclideanNorm();
+	    return v / static_cast<T>(v.EuclideanNorm());
 	}
 
 	// Dot product.
 	template <typename T, size_t N>
-	double dot(const Vector<T, N>& v1, const Vector<T, N>& v2) {
+	float dot(const Vector<T, N>& v1, const Vector<T, N>& v2) {
 
-	    double result = 0;
+	    float result = 0;
 
 	    for (int index = 0; index < N; ++index) {
-	        result = v1[index] * v2[index];
+	        result += static_cast<float>(v1[index]) * static_cast<float>(v2[index]);
 	    }
 
 	    return result;
