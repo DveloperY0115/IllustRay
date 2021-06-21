@@ -1,7 +1,6 @@
 /*
- * Unit test for Vector.hpp
+ * VectorBaseTest.cpp : Unit-test for Vector base class.
  */
-
 
 #define CATCH_CONFIG_MAIN
 #include "../catch.hpp"
