@@ -11,12 +11,11 @@
 
 namespace IllustRay {
 
-	//! Generic class for N-dimensional Vector
+	// Generic class for N-dimensional Vector
 	template <typename T, size_t N>
 	class Vector {
 
 	public:
-
 		// Initialize all elements to zero.
 		Vector() {
 			data = std::array<T, N>();
