@@ -273,4 +273,9 @@ namespace IllustRay {
 	    return v - 2 * dot(v, n) * n;
 	}
 }
+
+#include "Vector2.hpp"
+#include "Vector3.hpp"
+#include "Vector4.hpp"
+
 #endif

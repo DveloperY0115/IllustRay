@@ -1,15 +1,8 @@
-﻿# CMakeList.txt : CMake project for Illustray, include source and define
-# project specific logic here.
-#
-cmake_minimum_required (VERSION 3.8)
+cmake_minimum_required(VERSION 3.8)
 
-set(CMAKE_CXX_STANDARD 11)
+project(IllustRay)
 
-project ("IllustRay")
+add_subdirectory(CPU)
 
-include_directories(Includes)
-
-add_subdirectory(Tests)
-
-# Add source to this project's executable.
-add_executable (Illustray "Illustray.cpp" "Illustray.h" "Includes/Vector/Vector.hpp" "Includes/Types.hpp")
+# TODO: Conditionally enable CUDA build
+add_subdirectory(GPU)
