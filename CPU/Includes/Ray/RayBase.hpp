@@ -5,13 +5,39 @@
 #ifndef ILLUSTRAY_RAYBASE_HPP
 #define ILLUSTRAY_RAYBASE_HPP
 
-#include "../Vector/Vector3.hpp"
+#include "../Point/Point.hpp"
+#include "../Vector/Vector.hpp"
 
-class Ray {
+namespace IllustRay {
 
-public:
-    Ray() = default;
+    template <typename T>
+    class Ray {
 
-    Ray(const )
-};
+    public:
+        Ray() = default;
+
+        Ray(const Point3<T>& origin, const Vector3<T>& direction)
+                : origin(origin), direction(direction)
+        {
+            // Do nothing
+        }
+
+        Point3<T> getOrigin() const {
+            return origin;
+        }
+
+        Vector3<T> getDirection() const {
+            return direction;
+        }
+
+        Vector3<T> at(T t) const {
+            return origin + t * direction;
+        }
+
+    private:
+        Point3<T> origin;
+        Vector3<T> direction;
+    };
+
+}
 #endif //ILLUSTRAY_RAYBASE_HPP
