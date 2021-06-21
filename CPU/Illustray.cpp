@@ -3,7 +3,8 @@
 */
 
 #include <iostream>
-#include "Vector/VectorBase.hpp"
+#include "Vector/Vector.hpp"
+#include "Point/Point.hpp"
 
 int main()
 {
