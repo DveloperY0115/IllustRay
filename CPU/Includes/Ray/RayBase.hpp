@@ -30,7 +30,7 @@ namespace IllustRay {
             return direction;
         }
 
-        Vector3<T> at(T t) const {
+        Point3<T> at(T t) const {
             return origin + t * direction;
         }
 
