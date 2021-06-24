@@ -24,6 +24,6 @@ TEST_CASE("Testing constructors") {
 
         Point3Float orig = ray.getOrigin();
         Vector3Float dir = ray.getDirection();
-        // Point3Float at = ray.at(1.0);
+        Point3Float at = ray.at(1.0);
     }
 }

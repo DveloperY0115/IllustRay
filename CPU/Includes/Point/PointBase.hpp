@@ -46,9 +46,68 @@ namespace IllustRay {
             return coordinate[index];
         }
 
+        // Adding vector to point.
+        Point<T, N>& operator += (const Vector<T, N> otherVector) {
+            for (int index = 0; index < N; ++index) {
+                coordinate[index] += otherVector[index];
+            }
+            return *this;
+        }
+
+        // Subtracting vector from point.
+        Point<T, N>& operator -= (const Vector<T, N> otherVector) {
+            for (int index = 0; index < N; ++index) {
+                coordinate[index] -= otherVector[index];
+            }
+            return *this;
+        }
+
     private:
         std::array<T, N> coordinate;
     };
+
+    // Point - Point = Vector
+    template <typename T, size_t N>
+    Vector<T, N> operator - (const Point<T, N>& p1, const Point<T, N>& p2) {
+        std::array<T, N> container = std::array<T, N>();
+
+        for (int index = 0; index < N; ++index) {
+            container[index] = p1[index] - p2[index];
+        }
+
+        return Vector<T, N>(container);
+    }
+
+    // Point + Vector = Point
+    template <typename T, size_t N>
+    Point<T, N> operator + (const Point<T, N>& p1, const Vector<T, N>& v1) {
+        std::array<T, N> container = std::array<T, N>();
+
+        for (int index = 0; index < N; ++index) {
+            container[index] = p1[index] + v1[index];
+        }
+
+        return Point<T, N>(container);
+    }
+
+    // Vector + Point = Point
+    template <typename T, size_t N>
+    Point<T, N> operator + (const Vector<T, N>& v1, const Point<T, N>& p1) {
+        return p1 + v1;
+    }
+
+    // Point - Vector = Point
+    template <typename T, size_t N>
+    Point<T, N> operator - (const Point<T, N>& p1, const Vector<T, N>& v1) {
+        std::array<T, N> container = std::array<T, N>();
+
+        for (int index = 0; index < N; ++index) {
+            container[index] = p1[index] - v1[index];
+        }
+
+        return Point<T, N>(container);
+    }
+    
 }
 
 #include "PointTypes.hpp"
