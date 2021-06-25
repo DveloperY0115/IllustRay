@@ -8,7 +8,7 @@
 
 using namespace IllustRay;
 
-TEST_CASE("Testing constructors") {
+TEST_CASE("[RayBase] Testing constructors") {
 
     // Default constructor initializing all elements to zero.
     SUBCASE("Test default constructor") {
@@ -25,5 +25,10 @@ TEST_CASE("Testing constructors") {
         Point3Float orig = ray.getOrigin();
         Vector3Float dir = ray.getDirection();
         Point3Float at = ray.at(1.0);
+        REQUIRE((orig[0] == 1.0 && orig[1] == 2.0 && orig[2] == 3.0));
+        REQUIRE(doctest::Approx(dir.EuclideanNorm()) == 1.0);
+        // REQUIRE((doctest::Approx(dir[0]) == 1.0 / dir.EuclideanNorm() &&
+        //        doctest::Approx(dir[1]) == -1.0 / dir.EuclideanNorm() &&
+        //        doctest::Approx(dir[2]) == 1.0 / dir.EuclideanNorm()));
     }
 }
