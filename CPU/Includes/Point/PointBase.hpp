@@ -107,7 +107,7 @@ namespace IllustRay {
 
         return Point<T, N>(container);
     }
-    
+
 }
 
 #include "PointTypes.hpp"
