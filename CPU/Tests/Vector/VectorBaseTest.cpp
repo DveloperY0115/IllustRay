@@ -8,7 +8,7 @@
 
 using namespace IllustRay;
 
-TEST_CASE("Testing constructors") {
+TEST_CASE("[VectorBase] Testing constructors") {
 
     // Default constructor initializing all elements to zero.
     SUBCASE("Test default constructor") {
@@ -16,7 +16,7 @@ TEST_CASE("Testing constructors") {
         CHECK((v[0] == 0 && v[1] == 0 && v[2] == 0));
     }
 
-        // Constructor initializing all elements to the given value.
+    // Constructor initializing all elements to the given value.
     SUBCASE("Initialize with single value") {
         Vector<float, 100> v = Vector<float, 100>(1.0);
         bool isOne = true;
@@ -29,23 +29,31 @@ TEST_CASE("Testing constructors") {
         CHECK(isOne);
     }
 
-        // Constructor initializing all elements with values in the container.
+    // Constructor initializing all elements with values in the container.
     SUBCASE("Initialize with container") {
         std::array<double, 4> container = {1.0, 2.0, 3.0, 4.0};
-        Vector<double, 4> v = Vector<double, 4>(container);
+        auto v = Vector<double, 4>(container);
         CHECK((v[0] == 1.0 && v[1] == 2.0 && v[2] == 3.0 && v[3] == 4.0));
     }
 
-        // Copy constructor.
+    // Constructor using initializer list
+    SUBCASE("Initialize with initializer list") {
+        Vector<double, 3> v1 = { 1.0, 2.0, 3.0 };
+        Vector<double, 4> v2 = { 1.0, 2.0, 3.0 };
+        REQUIRE((v1[0] == 1.0 && v1[1] == 2.0 && v1[2] == 3.0));
+        REQUIRE((v1[0] == 1.0 && v1[1] == 2.0 && v1[2] == 3.0 && v2[3] == 0.0));
+    }
+
+    // Copy constructor.
     SUBCASE("Copy constructor") {
         std::array<double, 4> container = {1.0, 2.0, 3.0, 4.0};
-        Vector<double, 4> v1 = Vector<double, 4>(container);
-        Vector<double, 4> v2 = Vector<double, 4>(v1);
+        auto v1 = Vector<double, 4>(container);
+        auto v2 = Vector<double, 4>(v1);
         CHECK((v2[0] == 1.0 && v2[1] == 2.0 && v2[2] == 3.0 && v2[3] == 4.0));
     }
 }
 
-TEST_CASE("Testing unary operators") {
+TEST_CASE("[VectorBase] Testing unary operators") {
 
     // Vector negation.
     SUBCASE("Vector negation") {
@@ -58,8 +66,8 @@ TEST_CASE("Testing unary operators") {
     SUBCASE("Vector addition") {
         std::array<float, 3> container1 = {1.0, 3.0, 4.0};
         std::array<float, 3> container2 = {-1.0, 1.0, 2.0};
-        Vector3Float v1 = Vector3Float(container1);
-        Vector3Float v2 = Vector3Float(container2);
+        auto v1 = Vector3Float(container1);
+        auto v2 = Vector3Float(container2);
         v1 += v2;
         CHECK((v1[0] == 0 && v1[1] == 4.0 && v1[2] == 6.0));
     }
@@ -68,8 +76,8 @@ TEST_CASE("Testing unary operators") {
     SUBCASE("Vector subtraction") {
         std::array<float, 3> container1 = {1.0, 3.0, 4.0};
         std::array<float, 3> container2 = {-1.0, 1.0, 2.0};
-        Vector3Float v1 = Vector3Float(container1);
-        Vector3Float v2 = Vector3Float(container2);
+        auto v1 = Vector3Float(container1);
+        auto v2 = Vector3Float(container2);
         v1 -= v2;
         CHECK((v1[0] == 2.0 && v1[1] == 2.0 && v1[2] == 2.0));
     }
@@ -78,8 +86,8 @@ TEST_CASE("Testing unary operators") {
     SUBCASE("Element-wise vector multiplication") {
         std::array<float, 3> container1 = {1.0, 3.0, 4.0};
         std::array<float, 3> container2 = {-1.0, 1.0, 2.0};
-        Vector3Float v1 = Vector3Float(container1);
-        Vector3Float v2 = Vector3Float(container2);
+        auto v1 = Vector3Float(container1);
+        auto v2 = Vector3Float(container2);
         v1 *= v2;
         CHECK((v1[0] == -1.0 && v1[1] == 3.0 && v1[2] == 8.0));
     }
@@ -94,7 +102,7 @@ TEST_CASE("Testing unary operators") {
 
     // Element-wise scalar division.
     SUBCASE("Element-wise scalar division") {
-        double s = 2.0;
+        float s = 2.0;
         Vector2Float v = Vector2Float(1.0);
         v /= s;
         CHECK((v[0] == 0.5 && v[1] == 0.5));
@@ -103,7 +111,7 @@ TEST_CASE("Testing unary operators") {
     // Norms & Normalization
     SUBCASE("Various norms") {
         std::array<double, 3> container = {1.0, 2.0, 3.0};
-        Vector3Double v = Vector3Double(container);
+        auto v = Vector3Double(container);
         CHECK(v.ManhattanNorm() == 6.0);
         CHECK(v.EuclideanNorm() == std::sqrt(1.0 + 2.0 * 2.0 + 3.0 * 3.0));
 
@@ -112,7 +120,7 @@ TEST_CASE("Testing unary operators") {
     }
 }
 
-TEST_CASE("Testing binary operators") {
+TEST_CASE("[VectorBase] Testing binary operators") {
 
     // Binary vector addition
     SUBCASE("Vector addition") {

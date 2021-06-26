@@ -7,6 +7,7 @@
 
 namespace IllustRay {
 
+
 }
 
 #endif //ILLUSTRAY_VECTOR2_HPP

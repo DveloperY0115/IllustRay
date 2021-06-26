@@ -31,6 +31,18 @@ namespace IllustRay {
 		    data = container;
 		}
 
+		// Initialize elements with values in initializer list
+		Vector(std::initializer_list<T> list) {
+		    typename std::initializer_list<T>::iterator iter = list.begin();
+		    for (int index = 0; index < std::min(N, list.size()); ++index) {
+		        data[index] = *iter;
+		        iter++;
+		    }
+		    for (int index = std::min(N, list.size()); index < N; ++index) {
+		        data[index] = static_cast<T>(0);
+		    }
+		}
+
 		// Copy constructor.
 		Vector(const Vector<T, N>& otherVector) {
 		    data = otherVector.data;
