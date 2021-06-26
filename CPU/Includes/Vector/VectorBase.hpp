@@ -183,7 +183,24 @@ namespace IllustRay {
 		std::array<T, N> data;
 	};
 
+	// Binary vector comparison (equal)
+	template <typename T, size_t N>
+	bool operator == (const Vector<T, N>& v1, const Vector<T, N>& v2) {
 
+	    for (int index = 0; index < N; ++index) {
+	        if (v1[index] != v2[index]) {
+                return false;
+	        }
+	    }
+
+	    return true;
+	}
+
+	// Binary vector comparison (not-equal)
+	template <typename T, size_t N>
+	bool operator != (const Vector<T, N>& v1, const Vector<T, N>& v2) {
+	    return !(v1 == v2);
+	}
 
 	// Binary vector addition.
 	template <typename T, size_t N>
