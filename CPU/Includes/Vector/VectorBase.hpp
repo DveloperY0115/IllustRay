@@ -45,7 +45,13 @@ namespace IllustRay {
 
 		// Copy constructor.
 		Vector(const Vector<T, N>& otherVector) {
-		    data = otherVector.data;
+		    data = otherVector.getData();
+		}
+
+		// Assignment operator
+		Vector<T, N>& operator = (const Vector<T, N>& otherVector) {
+		    data = otherVector.getData();
+		    return *this;
 		}
 
 		// Indexing operator.
@@ -56,6 +62,11 @@ namespace IllustRay {
 		// Indexing operator.
 		const T& operator [] (const int index) const {
 			return data[index];
+		}
+
+		// Get internal data
+		std::array<T, N> getData() const {
+		    return this->data;
 		}
 
 		// Vector negation.
