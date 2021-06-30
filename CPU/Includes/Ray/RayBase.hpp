@@ -40,4 +40,7 @@ namespace IllustRay {
     };
 
 }
+
+#include "RayTypes.hpp"
+
 #endif //ILLUSTRAY_RAYBASE_HPP
