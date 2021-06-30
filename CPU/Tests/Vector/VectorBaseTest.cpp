@@ -122,9 +122,9 @@ TEST_CASE("[VectorBase] Testing unary operators") {
         std::array<double, 3> container = {1.0, 2.0, 3.0};
         auto v = Vector3Double(container);
         REQUIRE(v.ManhattanNorm() == 6.0);
-        REQUIRE(v.EuclideanNorm() == std::sqrt(1.0 + 2.0 * 2.0 + 3.0 * 3.0));
+        REQUIRE(doctest::Approx(v.EuclideanNorm()) == std::sqrt(1.0 + 2.0 * 2.0 + 3.0 * 3.0));
         v = v.normalize();
-        REQUIRE(v.EuclideanNorm() == 1.0);
+        REQUIRE(doctest::Approx(v.EuclideanNorm()) == 1.0);
     }
 }
 
@@ -137,7 +137,7 @@ TEST_CASE("[VectorBase] Testing binary operators") {
         REQUIRE(v1 == v2);
         REQUIRE(!(v1 != v2));
     }
-    
+
     // Binary vector addition
     SUBCASE("Vector addition") {
         Vector3Float v1 = Vector3Float(1.0);

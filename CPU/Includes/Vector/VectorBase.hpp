@@ -9,6 +9,8 @@
 #include <array>
 #include <cmath>
 
+#include "../MathUtils.hpp"
+
 namespace IllustRay {
 
 	// Generic class for N-dimensional Vector
@@ -144,9 +146,9 @@ namespace IllustRay {
         }
 
         // Manhattan norm (L1 norm) of vector.
-        double ManhattanNorm() {
+        float ManhattanNorm() {
 
-		    double norm = 0;
+		    float norm = 0;
 
             for (int index = 0; index < N; ++index) {
                 norm += std::abs(this->data[index]);
@@ -156,9 +158,9 @@ namespace IllustRay {
 		}
 
         // Euclidean norm (L2 norm) of vector.
-        double EuclideanNorm() {
+        float EuclideanNorm() {
 
-		    double norm = 0;
+		    float norm = 0;
 
 		    for (int index = 0; index < N; ++index) {
 		        norm += this->data[index] * this->data[index];
@@ -170,7 +172,10 @@ namespace IllustRay {
 		// Make a vector to have unit length in terms of Euclidean distance.
 		Vector<T, N>& normalize() {
 
-		    double norm = this->EuclideanNorm();
+		    float norm = this->EuclideanNorm();
+
+            // if the vector is zero vector, abort.
+		    assert(norm > static_cast<float>(std::numeric_limits<T>::epsilon()));
 
             for (int index = 0; index < N; ++index) {
                 this->data[index] /= norm;
@@ -188,7 +193,7 @@ namespace IllustRay {
 	bool operator == (const Vector<T, N>& v1, const Vector<T, N>& v2) {
 
 	    for (int index = 0; index < N; ++index) {
-	        if (v1[index] != v2[index]) {
+	        if (!equals(v1[index], v2[index])) {
                 return false;
 	        }
 	    }
